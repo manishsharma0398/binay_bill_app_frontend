@@ -15,7 +15,10 @@ function App() {
           <Route exact path="/" component={HomePage} />
         </Switch>
         <Switch>
-          <Route exact path="/auth" component={Auth} />
+          <Route exact path="/signin" component={Auth} />
+        </Switch>
+        <Switch>
+          <Route exact path="/signup" component={Auth} />
         </Switch>
         <Switch>
           <Route exact path="/products/add" component={AddProduct} />

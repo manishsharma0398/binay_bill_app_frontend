@@ -16,7 +16,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-4">
       <form onSubmit={addNewProduct}>
         <TextInput
           id="name"
@@ -37,6 +37,7 @@ const AddProduct = () => {
           required
         />
         <TextInput
+          prependText="₹"
           id="sellingPrice"
           type="number"
           label="Selling Price"
