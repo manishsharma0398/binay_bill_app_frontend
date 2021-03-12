@@ -24,7 +24,7 @@ const TextInput = ({
         }
       >
         {prependText && typeof prependText !== "undefined" && (
-          <span class="input-group-text">{prependText}</span>
+          <span className="input-group-text">{prependText}</span>
         )}
 
         <input

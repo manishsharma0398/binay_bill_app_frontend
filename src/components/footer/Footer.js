@@ -4,11 +4,11 @@ const Footer = () => {
   const date = new Date();
 
   return (
-    <div id="footer" className="bg-blue py-4">
+    <div id="footer" className="bg-blue">
       <div className="container">
         <div className="row px-3">
           {" "}
-          <small className="ml-4 ml-sm-5 mb-2">
+          <small className="ml-4 ml-sm-5">
             Made by Manish Sharma | Copyright © {date.getFullYear()} | All
             rights reserved.
           </small>

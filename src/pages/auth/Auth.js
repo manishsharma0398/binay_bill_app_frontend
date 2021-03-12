@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import Footer from "../../components/footer/Footer";
 
 const Auth = (props) => {
   console.log(props.location.pathname);
@@ -93,7 +92,6 @@ const Auth = (props) => {
             </div>
           </div>
         </div>
-        {/* <Footer /> */}
       </div>
     </div>
   );

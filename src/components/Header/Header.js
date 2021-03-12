@@ -2,9 +2,11 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+import "./Header.scss";
+
 const Header = () => {
   return (
-    <nav id="header" className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="header" className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
         <Link to="/" className="navbar-brand">
           <span className="logo">BP & SONS</span>

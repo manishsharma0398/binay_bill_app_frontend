@@ -7,26 +7,31 @@ import HomePage from "./pages/home/HomePage";
 import CreateInvoice from "./pages/invoices/CreateInvoice";
 import Footer from "./components/footer/Footer";
 
+import "./App.scss";
+
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div id="body" className="container">
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-        </Switch>
-        <Switch>
-          <Route exact path="/signin" component={Auth} />
-        </Switch>
-        <Switch>
-          <Route exact path="/signup" component={Auth} />
-        </Switch>
-        <Switch>
-          <Route exact path="/products/add" component={AddProduct} />
-        </Switch>
-        <Switch>
-          <Route exact path="/invoices/create" component={CreateInvoice} />
-        </Switch>
+    <div id="page">
+      <div id="body">
+        <Header />
+        {/* <div className="container"> */}
+        <div id="main-content">
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+          </Switch>
+          <Switch>
+            <Route exact path="/signin" component={Auth} />
+          </Switch>
+          <Switch>
+            <Route exact path="/signup" component={Auth} />
+          </Switch>
+          <Switch>
+            <Route exact path="/products/add" component={AddProduct} />
+          </Switch>
+          <Switch>
+            <Route exact path="/invoices/create" component={CreateInvoice} />
+          </Switch>
+        </div>
       </div>
       <Footer />
     </div>
