@@ -1,10 +1,11 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
 
 const Auth = (props) => {
   console.log(props.location.pathname);
-  const date = new Date();
+
   return (
     <div className="py-5 mx-auto">
       <div className="card card0 border-0">
@@ -92,22 +93,7 @@ const Auth = (props) => {
             </div>
           </div>
         </div>
-        <div className="bg-blue py-4">
-          <div className="row px-3">
-            {" "}
-            <small className="ml-4 ml-sm-5 mb-2">
-              Made by Manish Sharma | Copyright © {date.getFullYear()} | All
-              rights reserved.
-            </small>
-            <div className="social-contact ml-4 ml-sm-auto">
-              {" "}
-              <span className="fa fa-facebook mr-4 text-sm" />{" "}
-              <span className="fa fa-google-plus mr-4 text-sm" />{" "}
-              <span className="fa fa-linkedin mr-4 text-sm" />{" "}
-              <span className="fa fa-twitter mr-4 mr-sm-5 text-sm" />{" "}
-            </div>
-          </div>
-        </div>
+        {/* <Footer /> */}
       </div>
     </div>
   );

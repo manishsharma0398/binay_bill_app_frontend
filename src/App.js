@@ -5,12 +5,13 @@ import { Switch, Route } from "react-router-dom";
 import AddProduct from "./pages/products/AddProduct";
 import HomePage from "./pages/home/HomePage";
 import CreateInvoice from "./pages/invoices/CreateInvoice";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <div className="container">
+      <div id="body" className="container">
         <Switch>
           <Route exact path="/" component={HomePage} />
         </Switch>
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/invoices/create" component={CreateInvoice} />
         </Switch>
       </div>
+      <Footer />
     </div>
   );
 }
