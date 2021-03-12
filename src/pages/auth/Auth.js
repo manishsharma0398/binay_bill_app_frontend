@@ -2,23 +2,17 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+import "./Auth.scss";
+
 const Auth = (props) => {
   console.log(props.location.pathname);
 
   return (
-    <div className="py-5 mx-auto">
-      <div className="card card0 border-0">
+    <div id="auth" className="mt-md-3 mt-lg-5 mx-auto">
+      <div className="container">
         <div className="row d-flex">
           <div className="col-lg-6">
             <div className="card1 pb-5">
-              <div className="row">
-                {" "}
-                <h4 className="logo">BP & SONS</h4>
-                {/* <img
-                  src="https://i.imgur.com/CXQmsmF.png"
-                  className="logo"
-                />{" "} */}
-              </div>
               <div className="row px-3 justify-content-center mt-4 mb-5 border-line">
                 {" "}
                 <img
@@ -30,8 +24,8 @@ const Auth = (props) => {
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="card2 card border-0 px-4 py-5">
-              <div className="row px-3">
+            <div className="card2 card border-0 py-5">
+              <div className="row">
                 {" "}
                 <label className="mb-1 p-0">
                   <h6 className="mb-0 text-sm">Email Address</h6>
@@ -43,7 +37,7 @@ const Auth = (props) => {
                   placeholder="Enter a valid email address"
                 />{" "}
               </div>
-              <div className="row px-3">
+              <div className="row">
                 {" "}
                 <label className="mb-1 p-0">
                   <h6 className="mb-0 text-sm">Password</h6>
@@ -54,7 +48,7 @@ const Auth = (props) => {
                   placeholder="Enter password"
                 />{" "}
               </div>
-              <div className="row px-3 mb-4">
+              <div className="row mb-4">
                 {/* <div className="custom-control custom-checkbox custom-control-inline">
                   {" "}
                   <input
@@ -74,15 +68,15 @@ const Auth = (props) => {
                   Forgot Password?
                 </Link>
               </div>
-              <div className="row mb-3 px-3">
+              <div className="row mb-3">
                 {" "}
                 <button type="submit" className="btn btn-blue text-center">
                   Login
                 </button>{" "}
               </div>
-              <div className="row mb-4 px-1">
+              <div className="row mb-4">
                 {" "}
-                <small className="font-weight-bold">
+                <small className="font-weight-bold p-0">
                   Don't have an account?{" "}
                   <Link to="/signup" className="text-danger ">
                     Register
