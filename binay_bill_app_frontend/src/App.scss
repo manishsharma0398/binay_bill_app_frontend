@@ -1,0 +1,30 @@
+#page {
+  position: relative;
+  min-height: 100vh;
+
+  #body {
+    padding-bottom: 68px; /* Footer height */
+    // height: 100%;
+
+    // #main-content {
+    //   height: 100%;
+    //   display: flex;
+    //   align-items: center;
+    // }
+  }
+
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 68px; /* Footer height */
+    // padding-top: 0.5rem;
+    // padding-bottom: 0.5rem;
+
+    .container {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+  }
+}
