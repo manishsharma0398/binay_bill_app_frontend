@@ -123,7 +123,7 @@
   font-weight: 300;
 }
 
-input,
+input.form-control,
 textarea {
   padding: 10px 12px 10px 12px;
   border: 1px solid lightgrey;
@@ -137,7 +137,7 @@ textarea {
   letter-spacing: 1px;
 }
 
-input:focus,
+input.form-control:focus,
 textarea:focus {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
@@ -146,7 +146,7 @@ textarea:focus {
   outline-width: 0;
 }
 
-button:focus {
+.btn:focus {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
@@ -158,16 +158,20 @@ a {
   cursor: pointer;
 }
 
-.btn-blue {
-  background-color: #1a237e;
-  width: 150px;
+.btn {
+  /* width: 150px; */
   color: #fff;
   border-radius: 2px;
+}
+
+.btn-blue {
+  background-color: #1a237e;
 }
 
 .btn-blue:hover {
   background-color: #000;
   cursor: pointer;
+  color: #fff;
 }
 
 .bg-blue {

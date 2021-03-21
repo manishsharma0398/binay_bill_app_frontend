@@ -37,7 +37,6 @@ const AddProduct = () => {
           required
         />
         <TextInput
-          prependText="₹"
           id="sellingPrice"
           type="number"
           label="Selling Price"
@@ -47,9 +46,13 @@ const AddProduct = () => {
           required
         />
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-blue text-center btn-block">
           Add New Product
         </button>
+
+        {/* <button type="submit" className="btn btn-blue">
+          
+        </button> */}
       </form>
     </div>
   );

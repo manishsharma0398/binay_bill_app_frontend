@@ -9,33 +9,30 @@ const TextInput = ({
   value,
   onChange,
   required,
-  prependText,
+  error,
 }) => {
   return (
-    <div className="mb-3">
+    <div className="row">
       <label htmlFor={id} className="form-label mb-1">
-        {label}
+        <h6 className="mb-0 text-sm">{label}</h6>
       </label>
-      <div
-        className={
-          prependText && typeof prependText !== "undefined"
-            ? " input-group"
-            : ""
-        }
-      >
-        {prependText && typeof prependText !== "undefined" && (
-          <span className="input-group-text">{prependText}</span>
-        )}
-
+      <div className="input-group">
         <input
           type={type}
-          className="form-control"
+          className={`form-control ${
+            error && typeof error !== "undefined" ? " is-invalid" : ""
+          }`}
           id={id}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
           required={required}
         />
+
+        {error && typeof error !== "undefined" && (
+          <div className="invalid-feedback">{error}</div>
+        )}
+
         {/* <div id={id + "Help"} className="form-text">
         We'll never share your email with anyone else.
       </div> */}
@@ -47,6 +44,7 @@ const TextInput = ({
 TextInput.defaultProps = {
   type: "text",
   required: false,
+  error: "",
 };
 
 TextInput.propTypes = {
@@ -57,7 +55,7 @@ TextInput.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
-  prependText: PropTypes.string,
+  error: PropTypes.string,
 };
 
 export default TextInput;

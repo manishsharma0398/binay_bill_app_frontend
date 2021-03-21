@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
+import TextInput from "../../components/form/TextInput";
+
+import Axios from "axios";
 
 import "./Auth.scss";
 
 const Auth = (props) => {
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   console.log(props.location.pathname);
+
+  const loginToApp = async (e) => {
+    e.preventDefault();
+
+    setEmailError("");
+    setPasswordError("");
+
+    try {
+      const user = await Axios.post("/api/auth/login", {
+        email,
+        password,
+      });
+      const userDetails = user.data;
+      // console.log(user);
+    } catch (error) {
+      console.log(error.response);
+      if ("email" in error.response.data)
+        setEmailError(error.response.data.email);
+      if ("password" in error.response.data)
+        setPasswordError(error.response.data.password);
+    }
+  };
 
   return (
     <div id="auth" className="mt-md-3 mt-lg-5 mx-auto">
@@ -24,30 +54,34 @@ const Auth = (props) => {
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="card2 card border-0 py-5">
-              <div className="row">
-                {" "}
-                <label className="mb-1 p-0">
-                  <h6 className="mb-0 text-sm">Email Address</h6>
-                </label>{" "}
-                <input
-                  className="mb-4"
-                  type="text"
-                  name="email"
-                  placeholder="Enter a valid email address"
-                />{" "}
-              </div>
-              <div className="row">
-                {" "}
-                <label className="mb-1 p-0">
-                  <h6 className="mb-0 text-sm">Password</h6>
-                </label>{" "}
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                />{" "}
-              </div>
+            <form onSubmit={loginToApp} className="card2 card border-0 py-5">
+              <TextInput
+                id="email"
+                label="Username / Email"
+                placeholder="Ex - sbinay.4242@gmail.com"
+                value={email}
+                error={emailError}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <TextInput
+                error={passwordError}
+                id="password"
+                type="password"
+                label="Password"
+                placeholder="Your password goes here"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+
+              <button
+                type="submit"
+                className="btn btn-blue text-center btn-block"
+              >
+                Sign In
+              </button>
+
               <div className="row mb-4">
                 {/* <div className="custom-control custom-checkbox custom-control-inline">
                   {" "}
@@ -68,12 +102,7 @@ const Auth = (props) => {
                   Forgot Password?
                 </Link>
               </div>
-              <div className="row mb-3">
-                {" "}
-                <button type="submit" className="btn btn-blue text-center">
-                  Login
-                </button>{" "}
-              </div>
+
               <div className="row mb-4">
                 {" "}
                 <small className="font-weight-bold p-0">
@@ -83,7 +112,7 @@ const Auth = (props) => {
                   </Link>
                 </small>{" "}
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
