@@ -6,14 +6,14 @@ import TextInput from "../../components/form/TextInput";
 import Axios from "axios";
 
 import "./Auth.scss";
+import { connect } from "react-redux";
+import { loginUser } from "../../redux/actions/authActions";
 
 const Auth = (props) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
-  console.log(props.location.pathname);
 
   const loginToApp = async (e) => {
     e.preventDefault();
@@ -26,8 +26,10 @@ const Auth = (props) => {
         email,
         password,
       });
-      const userDetails = user.data;
-      // console.log(user);
+      const userDetails = await user.data;
+      console.log(userDetails);
+
+      props.loginUser(userDetails);
     } catch (error) {
       console.log(error.response);
       if ("email" in error.response.data)
@@ -120,4 +122,4 @@ const Auth = (props) => {
   );
 };
 
-export default Auth;
+export default connect(null, { loginUser })(Auth);

@@ -1,14 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 
 import "./Header.scss";
 
-const Header = () => {
+import { logoutUser } from "../../redux/actions/authActions";
+
+const Header = ({ userLoggedIn, logoutUser }) => {
+  const signoutUser = (e) => {
+    e.preventDefault();
+    logoutUser();
+  };
+
   return (
     <nav id="header" className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
-        <Link to="/" className="navbar-brand">
+        <Link to="/dashboard" className="navbar-brand">
           <span className="logo">BP & SONS</span>
         </Link>
 
@@ -25,24 +33,34 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link to="/" className="nav-link active">
-              Home
-            </Link>
-            <Link to="/products/add" className="nav-link">
-              Add Product
-            </Link>
+            {userLoggedIn && (
+              <Link to="/dashboard" className="nav-link active">
+                Dashboard
+              </Link>
+            )}
+            {userLoggedIn && (
+              <Link to="/products/add" className="nav-link">
+                Add Product
+              </Link>
+            )}
             <Link to="/products" className="nav-link">
               Show Products
             </Link>
-            <Link to="/signin" className="nav-link">
-              Sign In
-            </Link>
-            <Link to="/signup" className="nav-link">
-              Sign Up
-            </Link>
-            <Link to="/" className="nav-link">
-              Log Out
-            </Link>
+            {userLoggedIn && (
+              <Link onClick={signoutUser} to="/" className="nav-link">
+                Log Out
+              </Link>
+            )}
+            {!userLoggedIn && (
+              <Link to="/signin" className="nav-link">
+                Sign In
+              </Link>
+            )}
+            {/* {!userLoggedIn && (
+              <Link to="/signup" className="nav-link">
+                Sign Up
+              </Link>
+            )} */}
           </div>
         </div>
       </div>
@@ -50,4 +68,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  userLoggedIn: state.auth.isLoggedIn,
+});
+
+export default connect(mapStateToProps, { logoutUser })(Header);
