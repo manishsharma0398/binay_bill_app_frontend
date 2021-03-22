@@ -1,16 +1,25 @@
+import React, { useEffect } from "react";
+
 import Header from "./components/Header/Header";
 import Auth from "./pages/auth/Auth";
 
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import AddProduct from "./pages/products/AddProduct";
-import HomePage from "./pages/home/HomePage";
+import HomePage from "./pages/dashboard/Dashboard";
 import CreateInvoice from "./pages/invoices/CreateInvoice";
 import Footer from "./components/footer/Footer";
+import { loginUser } from "./redux/actions/authActions";
 
 import "./App.scss";
 import { connect } from "react-redux";
 
-const App = ({ userLoggedIn }) => {
+const App = ({ userLoggedIn, loginUser }) => {
+  useEffect(() => {
+    const logIn = JSON.parse(localStorage.getItem("loggedIn"));
+    console.log(logIn);
+    if (logIn.isLoggedIn) loginUser(logIn.user);
+  });
+
   return (
     <div id="page">
       <div id="body">
@@ -19,7 +28,7 @@ const App = ({ userLoggedIn }) => {
           <Switch>
             <Route
               exact
-              path="/dashboard"
+              path="/"
               render={() =>
                 userLoggedIn ? <HomePage /> : <Redirect to="/signin" />
               }
@@ -29,9 +38,7 @@ const App = ({ userLoggedIn }) => {
             <Route
               exact
               path="/signin"
-              render={() =>
-                userLoggedIn ? <Redirect to="/dashboard" /> : <Auth />
-              }
+              render={() => (userLoggedIn ? <Redirect to="/" /> : <Auth />)}
             />
           </Switch>
           {/* <Switch>
@@ -66,6 +73,4 @@ const mapStateToProps = (state) => ({
   userLoggedIn: state.auth.isLoggedIn,
 });
 
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
+export default connect(mapStateToProps, { loginUser })(withRouter(App));

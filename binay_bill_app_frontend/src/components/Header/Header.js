@@ -10,13 +10,21 @@ import { logoutUser } from "../../redux/actions/authActions";
 const Header = ({ userLoggedIn, logoutUser }) => {
   const signoutUser = (e) => {
     e.preventDefault();
+    collapseNavbar();
     logoutUser();
+  };
+
+  const collapseNavbar = () => {
+    const navClasses = document.getElementById("navbar");
+    console.log(navClasses);
+    if (navClasses.classList.contains("show"))
+      navClasses.classList.remove("show");
   };
 
   return (
     <nav id="header" className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
-        <Link to="/dashboard" className="navbar-brand">
+        <Link onClick={collapseNavbar} to="/" className="navbar-brand">
           <span className="logo">BP & SONS</span>
         </Link>
 
@@ -24,35 +32,39 @@ const Header = ({ userLoggedIn, logoutUser }) => {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
+          data-bs-target="#navbar"
+          aria-controls="navbar"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="collapse navbar-collapse" id="navbar">
           <div className="navbar-nav">
             {userLoggedIn && (
-              <Link to="/dashboard" className="nav-link active">
+              <Link to="/" onClick={collapseNavbar} className="nav-link active">
                 Dashboard
               </Link>
             )}
             {userLoggedIn && (
-              <Link to="/products/add" className="nav-link">
+              <Link
+                to="/products/add"
+                onClick={collapseNavbar}
+                className="nav-link"
+              >
                 Add Product
               </Link>
             )}
-            <Link to="/products" className="nav-link">
+            <Link to="/products" onClick={collapseNavbar} className="nav-link">
               Show Products
             </Link>
             {userLoggedIn && (
-              <Link onClick={signoutUser} to="/" className="nav-link">
+              <Link onClick={signoutUser} className="nav-link">
                 Log Out
               </Link>
             )}
             {!userLoggedIn && (
-              <Link to="/signin" className="nav-link">
+              <Link to="/signin" onClick={collapseNavbar} className="nav-link">
                 Sign In
               </Link>
             )}
